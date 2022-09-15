@@ -1,35 +1,38 @@
 class GitCommand {
-    constructor(working_directory){
+    constructor(working_directory) {
         this.working_directory = working_directory;
     }
-    //Command: git init 
-    init(){
+    //Command: git init
+    init() {
         this.staging = [];
         this.local_repository = [];
         return "Initialized as empty Git repository.";
     }
 
     //Command: git status
-    status(){        
-        /*
-            Create logic here and run unit testing.
-        */
+    status() {
+        let path = Object.keys(this.working_directory.files),
+            count = path.length,
+            message = "";
+        message += `You have ${count} change/s.\n`;
+        message += path.join("\n");
+        return message;
     }
 
-    //Command: git add <filename/file directory/wildcard> 
-    add(path_file){
+    //Command: git add <filename/file directory/wildcard>
+    add(path_file) {
         let modified_files = this.working_directory.new_changes;
-        
-        if(modified_files[path_file]){
+
+        if (modified_files[path_file]) {
             this.staging.push(modified_files[path_file]);
             delete modified_files[path_file];
         }
     }
 
     //Command: git commit -m "<message>"
-    commit(message){
-        if(this.staging.length > 0){
-            this.local_repository.push({ "message": message, "files": this.staging });
+    commit(message) {
+        if (this.staging.length > 0) {
+            this.local_repository.push({ message: message, files: this.staging });
             this.staging = [];
             return "Done committing to local repository.";
         }
@@ -37,15 +40,13 @@ class GitCommand {
     }
 
     //Command: git push
-    push(){   
-        if(this.local_repository.length > 0){
+    push() {
+        if (this.local_repository.length > 0) {
             return "Done pushing to remote repository.";
-        } 
-        else {
+        } else {
             return "Nothing to push. No committed file found.";
-        }     
+        }
     }
 }
-
 
 module.exports = GitCommand;
