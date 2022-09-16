@@ -35,7 +35,7 @@ describe("Testing GitCommand.status()", function () {
     });
 
     it("False", function () {
-        let output = "true";
-        expect(output).to.equal("true");
+        let output = "1";
+        expect(output).to.equal("1");
     });
 });
