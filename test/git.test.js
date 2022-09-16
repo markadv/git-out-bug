@@ -33,4 +33,9 @@ describe("Testing GitCommand.status()", function () {
 
         expect(output).to.equal("You have 0 change/s.\n");
     });
+
+    it("False", function () {
+        let output = "true";
+        expect(output).to.equal("true");
+    });
 });
