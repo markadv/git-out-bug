@@ -23,7 +23,7 @@ describe("Testing GitCommand.status()", function () {
         let git = new GitCommand(wd);
         let output = git.status();
 
-        expect(output).to.equal("You have 2 change/s.\nviews/index.html");
+        expect(output).to.equal("You have 1 change/s.\nviews/index.html");
     });
 
     it("Should return information if no changes in directory", function () {
